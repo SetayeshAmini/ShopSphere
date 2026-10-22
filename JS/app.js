@@ -494,3 +494,272 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+/* =====================================
+   SHOPSPHERE — CATEGORIES INTERACTIONS
+===================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const categoriesSection = document.querySelector(
+        ".categories-section"
+    );
+
+    if (!categoriesSection) return;
+
+
+    // ==================================
+    // 1. CATEGORY FILTERING
+    // ==================================
+
+    const filterButtons = categoriesSection.querySelectorAll(
+        ".category-filter"
+    );
+
+    const categoryItems = categoriesSection.querySelectorAll(
+        ".category-item"
+    );
+
+    let filterToken = 0;
+
+
+    function filterCategories(selectedCategory) {
+
+        const currentToken = ++filterToken;
+
+        filterButtons.forEach((button) => {
+
+            const isActive =
+                button.dataset.filter === selectedCategory;
+
+            button.classList.toggle("active", isActive);
+
+            button.setAttribute(
+                "aria-pressed",
+                String(isActive)
+            );
+
+        });
+
+
+        categoryItems.forEach((item) => {
+
+            const matches =
+                selectedCategory === "all" ||
+                item.dataset.category === selectedCategory;
+
+            // Cancel any previous pending hide operation.
+            item.classList.remove("is-filtering-out");
+
+            if (!matches) {
+
+                item.classList.add("is-filtering-out");
+
+                window.setTimeout(() => {
+
+                    if (currentToken !== filterToken) return;
+
+                    item.classList.add("is-hidden");
+
+                }, 220);
+
+            } else {
+
+                item.classList.remove("is-hidden");
+
+            }
+
+        });
+
+    }
+
+
+    filterButtons.forEach((button) => {
+
+        button.addEventListener("click", () => {
+
+            filterCategories(button.dataset.filter);
+
+        });
+
+    });
+
+
+    // ==================================
+    // 2. POINTER-TRACKING LIGHT
+    // ==================================
+
+    const cards = categoriesSection.querySelectorAll(
+        ".category-card"
+    );
+
+    const supportsFinePointer = window.matchMedia(
+        "(hover: hover) and (pointer: fine)"
+    ).matches;
+
+    const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+
+    if (supportsFinePointer && !reduceMotion) {
+
+        cards.forEach((card) => {
+
+            card.addEventListener("pointermove", (event) => {
+
+                const rect = card.getBoundingClientRect();
+
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
+
+                const xPercent = (x / rect.width) * 100;
+                const yPercent = (y / rect.height) * 100;
+
+                card.style.setProperty(
+                    "--pointer-x",
+                    `${xPercent}%`
+                );
+
+                card.style.setProperty(
+                    "--pointer-y",
+                    `${yPercent}%`
+                );
+
+            });
+
+
+            // ==================================
+            // 3. SUBTLE 3D TILT
+            // ==================================
+
+            let frame = null;
+
+            card.addEventListener("pointermove", (event) => {
+
+                if (event.pointerType === "touch") return;
+
+                const rect = card.getBoundingClientRect();
+
+                const relativeX =
+                    (event.clientX - rect.left) / rect.width;
+
+                const relativeY =
+                    (event.clientY - rect.top) / rect.height;
+
+                const rotateY = (relativeX - 0.5) * 5;
+                const rotateX = (0.5 - relativeY) * 5;
+
+                if (frame !== null) {
+                    cancelAnimationFrame(frame);
+                }
+
+                frame = requestAnimationFrame(() => {
+
+                    card.style.transform = `
+                        perspective(900px)
+                        rotateX(${rotateX}deg)
+                        rotateY(${rotateY}deg)
+                        translateY(-3px)
+                    `;
+
+                    frame = null;
+
+                });
+
+            });
+
+
+            card.addEventListener("pointerleave", () => {
+
+                if (frame !== null) {
+                    cancelAnimationFrame(frame);
+                    frame = null;
+                }
+
+                card.style.transform = "";
+
+            });
+
+        });
+
+    }
+
+
+    // ==================================
+    // 4. REVEAL CARDS WHEN VISIBLE
+    // ==================================
+
+    const revealItems = categoriesSection.querySelectorAll(
+        "[data-reveal], .category-item"
+    );
+
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+
+        revealItems.forEach((element) => {
+            element.classList.add("is-visible");
+        });
+
+    } else {
+
+        const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
+
+                entries.forEach((entry) => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("is-visible");
+
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.08
+            }
+        );
+
+
+        revealItems.forEach((element, index) => {
+
+            if (element.matches(".category-item")) {
+
+                element.style.transitionDelay =
+                    `${(index % 3) * 90}ms`;
+
+            }
+
+            revealObserver.observe(element);
+
+        });
+
+    }
+
+
+    // ==================================
+    // 5. CATEGORY CARD CLICK
+    // ==================================
+
+    cards.forEach((card) => {
+
+        card.addEventListener("click", () => {
+
+            const category = card.dataset.categoryLink;
+
+            console.log(
+                `Selected category: ${category}`
+            );
+
+            // Later, we will connect this category
+            // to the real products section.
+
+        });
+
+    });
+
+});
