@@ -1045,3 +1045,46 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+
+/* =========================
+   SHOPSPHERE FOOTER
+========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    // AUTOMATIC COPYRIGHT YEAR
+    const footerYear = document.getElementById("footerYear");
+
+    if (footerYear) {
+        footerYear.textContent = new Date().getFullYear();
+    }
+
+    // NEWSLETTER FORM
+    const newsletterForm = document.getElementById("newsletterForm");
+    const newsletterEmail = document.getElementById("newsletterEmail");
+    const newsletterMessage = document.getElementById("newsletterMessage");
+
+    if (newsletterForm && newsletterEmail && newsletterMessage) {
+
+        newsletterForm.addEventListener("submit", event => {
+            event.preventDefault();
+
+            const email = newsletterEmail.value.trim();
+
+            if (!newsletterEmail.checkValidity() || !email) {
+                newsletterMessage.textContent =
+                    "Please enter a valid email address.";
+
+                newsletterEmail.focus();
+                return;
+            }
+
+            newsletterMessage.textContent =
+                "Thanks for your interest! Newsletter signup is a demo.";
+
+            newsletterForm.reset();
+        });
+    }
+
+});
+

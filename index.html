@@ -75,7 +75,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">
+                        <a class="nav-link" href="#story">
                             Our Story
                         </a>
                     </li>
@@ -111,7 +111,7 @@
 
                     <!-- Shopping Bag -->
                     <a
-                        href="cart.html"
+                        href="#products"
                         class="nav-icon-btn cart-link"
                         aria-label="Shopping bag, 0 items"
                     >
@@ -1239,9 +1239,9 @@
      OUR STORY SECTION
 ========================= -->
 
-<section class="story-section" id="story">
+<section class="story-section">
 
-    <div class="story-container">
+    <div class="story-container" id="story">
 
         <!-- LEFT: VISUAL -->
         <div class="story-visual" data-reveal>
@@ -1414,6 +1414,189 @@
     </div>
 
 </section>
+
+
+<!-- =========================
+     SHOPSPHERE FOOTER
+========================= -->
+
+<footer class="site-footer" id="footer">
+
+    <!-- Newsletter -->
+    <div class="footer-newsletter">
+        <div class="footer-newsletter-content">
+            <span class="footer-eyebrow">
+                <i class="bi bi-stars"></i>
+                THE SHOPSPHERE EDIT
+            </span>
+
+            <h2>
+                Good things,
+                <span>delivered.</span>
+            </h2>
+
+            <p>
+                Get product discoveries, exclusive updates,
+                and a little inspiration in your inbox.
+            </p>
+        </div>
+
+        <form class="footer-newsletter-form" id="newsletterForm">
+            <label for="newsletterEmail" class="visually-hidden">
+                Email address
+            </label>
+
+            <div class="footer-input-wrap">
+                <i class="bi bi-envelope"></i>
+
+                <input
+                    type="email"
+                    id="newsletterEmail"
+                    name="email"
+                    placeholder="Enter your email address"
+                    autocomplete="email"
+                    required
+                >
+
+                <button type="submit">
+                    Subscribe
+                    <i class="bi bi-arrow-up-right"></i>
+                </button>
+            </div>
+
+            <p class="newsletter-message" id="newsletterMessage" aria-live="polite">
+                By subscribing, you agree to receive our email updates.
+            </p>
+        </form>
+    </div>
+
+    <!-- Footer Main -->
+    <div class="footer-main">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+            <a href="#home" class="footer-logo" aria-label="ShopSphere home">
+                ShopSphere<span>.</span>
+            </a>
+
+            <p class="footer-brand-description">
+                Discover technology that inspires.
+                Thoughtfully selected products for a smarter,
+                more connected everyday.
+            </p>
+
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram">
+                    <i class="bi bi-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="Facebook">
+                    <i class="bi bi-facebook"></i>
+                </a>
+
+                <a href="#" aria-label="TikTok">
+                    <i class="bi bi-tiktok"></i>
+                </a>
+
+                <a href="#" aria-label="YouTube">
+                    <i class="bi bi-youtube"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Shop Links -->
+        <div class="footer-column">
+            <h3>Explore</h3>
+
+            <ul>
+                <li><a href="#products">All Products</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#products">New Arrivals</a></li>
+                <li><a href="#products">Best Sellers</a></li>
+                <li><a href="#story">Our Story</a></li>
+            </ul>
+        </div>
+
+        <!-- Customer Care -->
+        <div class="footer-column">
+            <h3>Customer Care</h3>
+
+            <ul>
+                <li><a href="#footer">Contact Us</a></li>
+                <li><a href="#footer">Shipping Information</a></li>
+                <li><a href="#footer">Returns & Refunds</a></li>
+                <li><a href="#footer">FAQs</a></li>
+                <li><a href="#footer">Track Your Order</a></li>
+            </ul>
+        </div>
+
+        <!-- Legal -->
+        <div class="footer-column">
+            <h3>Information</h3>
+
+            <ul>
+                <li><a href="#footer">Privacy Policy</a></li>
+                <li><a href="#footer">Terms of Service</a></li>
+                <li><a href="#footer">Cookie Policy</a></li>
+                <li><a href="#footer">Accessibility</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Trust Bar -->
+    <div class="footer-trust-bar">
+
+        <div class="footer-trust-item">
+            <i class="bi bi-shield-check"></i>
+
+            <div>
+                <strong>Secure Checkout</strong>
+                <span>Protected transactions</span>
+            </div>
+        </div>
+
+        <div class="footer-trust-item">
+            <i class="bi bi-box-seam"></i>
+
+            <div>
+                <strong>Careful Packaging</strong>
+                <span>Every order matters</span>
+            </div>
+        </div>
+
+        <div class="footer-trust-item">
+            <i class="bi bi-headset"></i>
+
+            <div>
+                <strong>Here to Help</strong>
+                <span>We're happy to assist</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+
+        <p class="footer-copyright">
+            &copy; <span id="footerYear"></span>
+            ShopSphere. All rights reserved.
+        </p>
+
+        <p class="footer-made">
+            Made for a more connected world
+            <i class="bi bi-heart-fill"></i>
+        </p>
+
+        <a href="#home" class="footer-back-top">
+            Back to top
+            <i class="bi bi-arrow-up"></i>
+        </a>
+
+    </div>
+
+</footer>
 
 
 <!-- Bootstrap 5 JavaScript -->
