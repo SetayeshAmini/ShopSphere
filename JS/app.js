@@ -763,3 +763,185 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+/* ==========================
+   SHOP SECTION INTERACTIONS
+========================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+    const shopGrid = document.getElementById("shopGrid");
+
+    if (!shopGrid) return;
+
+    const cards = Array.from(
+        shopGrid.querySelectorAll(".shop-card")
+    );
+
+    const filterButtons = document.querySelectorAll(".shop-filter");
+    const sortSelect = document.getElementById("shopSort");
+    const productCount = document.getElementById("productCount");
+    const loadMoreButton = document.getElementById("loadMoreProducts");
+
+    let activeFilter = "all";
+    let activeSort = "featured";
+
+    // FILTER PRODUCTS
+    function updateProducts() {
+        const visibleCards = cards.filter(card => {
+            return (
+                activeFilter === "all" ||
+                card.dataset.category === activeFilter
+            );
+        });
+
+        // SORT PRODUCTS
+        if (activeSort === "low-high") {
+            visibleCards.sort(
+                (a, b) => Number(a.dataset.price) - Number(b.dataset.price)
+            );
+        } else if (activeSort === "high-low") {
+            visibleCards.sort(
+                (a, b) => Number(b.dataset.price) - Number(a.dataset.price)
+            );
+        } else {
+            visibleCards.sort(
+                (a, b) => cards.indexOf(a) - cards.indexOf(b)
+            );
+        }
+
+        // Hide cards that don't match
+        cards.forEach(card => {
+            card.classList.add("is-hidden");
+            card.classList.remove("is-visible", "is-filtering-out");
+        });
+
+        // Show matching cards in the chosen order
+        visibleCards.forEach((card, index) => {
+            shopGrid.appendChild(card);
+            card.classList.remove("is-hidden");
+
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    card.classList.add("is-visible");
+                }, index * 60);
+            });
+        });
+
+        // Update result count
+        if (productCount) {
+            productCount.textContent = visibleCards.length;
+        }
+
+        // Hide load-more when no products match
+        if (loadMoreButton) {
+            loadMoreButton.style.display =
+                visibleCards.length === 0 ? "none" : "inline-flex";
+        }
+    }
+
+    // FILTER BUTTON EVENTS
+    filterButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            filterButtons.forEach(item => {
+                item.classList.remove("active");
+            });
+
+            button.classList.add("active");
+            activeFilter = button.dataset.filter;
+
+            updateProducts();
+        });
+    });
+
+    // SORT EVENTS
+    if (sortSelect) {
+        sortSelect.addEventListener("change", () => {
+            activeSort = sortSelect.value;
+            updateProducts();
+        });
+    }
+
+    // WISHLIST BUTTONS
+    document.querySelectorAll(".wishlist-btn").forEach(button => {
+        button.addEventListener("click", () => {
+            const icon = button.querySelector("i");
+            const isFavorite = button.classList.toggle("is-favorite");
+
+            if (icon) {
+                icon.classList.toggle("bi-heart", !isFavorite);
+                icon.classList.toggle("bi-heart-fill", isFavorite);
+            }
+
+            button.setAttribute("aria-pressed", String(isFavorite));
+        });
+    });
+
+    // QUICK ADD BUTTONS
+    document.querySelectorAll(".quick-add").forEach(button => {
+        button.addEventListener("click", () => {
+            const card = button.closest(".shop-card");
+            const productName =
+                card?.querySelector("h3")?.textContent.trim() || "Product";
+
+            button.innerHTML = `
+                <i class="bi bi-check-circle-fill"></i>
+                Added!
+            `;
+
+            button.classList.add("added");
+
+            // Small visual confirmation
+            button.setAttribute(
+                "aria-label",
+                `${productName} added to cart`
+            );
+
+            setTimeout(() => {
+                button.innerHTML = `
+                    <i class="bi bi-plus-lg"></i>
+                    Quick Add
+                `;
+
+                button.classList.remove("added");
+                button.setAttribute("aria-label", "Add product to cart");
+            }, 1500);
+
+            console.log(`${productName} added to cart`);
+        });
+    });
+
+    // LOAD MORE BUTTON
+    // This is a demo interaction until more products are added.
+    if (loadMoreButton) {
+        loadMoreButton.addEventListener("click", () => {
+            const originalText = loadMoreButton.innerHTML;
+
+            loadMoreButton.innerHTML = `
+                <i class="bi bi-check2-circle"></i>
+                You're all caught up!
+            `;
+
+            setTimeout(() => {
+                loadMoreButton.innerHTML = originalText;
+            }, 1800);
+        });
+    }
+
+    // REVEAL ANIMATION
+    const revealCards = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                revealCards.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.12
+    });
+
+    cards.forEach(card => revealCards.observe(card));
+
+    // INITIAL STATE
+    updateProducts();
+});
+

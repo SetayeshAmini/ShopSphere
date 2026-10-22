@@ -850,6 +850,392 @@
 </section>
 
 
+<!-- SHOP SECTION -->
+<section class="shop-section" id="products">
+
+    <div class="shop-container">
+
+        <!-- Section Header -->
+        <div class="shop-header" data-reveal>
+            <div class="shop-heading">
+                <span class="shop-eyebrow">
+                    <i class="bi bi-stars"></i>
+                    THE SHOPSPHERE COLLECTION
+                </span>
+
+                <h2>
+                    Find Your Next
+                    <span>Favorite.</span>
+                </h2>
+
+                <p>
+                    Discover innovative technology designed
+                    to make every moment extraordinary.
+                </p>
+            </div>
+
+            <a href="#products" class="shop-view-all">
+                Explore Collection
+                <i class="bi bi-arrow-up-right"></i>
+            </a>
+        </div>
+
+        <!-- Shop Controls -->
+        <div class="shop-controls" data-reveal>
+
+            <div class="shop-filters">
+                <button class="shop-filter active" data-filter="all">
+                    All Products
+                </button>
+
+                <button class="shop-filter" data-filter="audio">
+                    Audio
+                </button>
+
+                <button class="shop-filter" data-filter="mobile">
+                    Smartphones
+                </button>
+
+                <button class="shop-filter" data-filter="computers">
+                    Computers
+                </button>
+
+                <button class="shop-filter" data-filter="wearables">
+                    Wearables
+                </button>
+            </div>
+
+            <div class="shop-sort">
+                <i class="bi bi-sliders"></i>
+
+                <select id="shopSort" aria-label="Sort products">
+                    <option value="featured">Featured</option>
+                    <option value="low-high">Price: Low to High</option>
+                    <option value="high-low">Price: High to Low</option>
+                </select>
+            </div>
+
+        </div>
+
+        <!-- Products Information -->
+        <div class="shop-results">
+            <p>
+                Showing <span id="productCount">8</span> products
+            </p>
+
+            <span class="shop-live-status">
+                <span class="status-dot"></span>
+                Curated for you
+            </span>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="shop-grid" id="shopGrid">
+
+            <!-- Product 1 -->
+            <article class="shop-card" data-category="audio" data-price="249" data-reveal>
+                <div class="shop-card-image image-purple">
+                    <span class="product-badge">BESTSELLER</span>
+
+                    <button class="wishlist-btn" aria-label="Add headphones to wishlist">
+                        <i class="bi bi-heart"></i>
+                    </button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=85"
+                        alt="Wireless headphones"
+                        loading="lazy"
+                    >
+
+                    <button class="quick-add">
+                        <i class="bi bi-plus-lg"></i>
+                        Quick Add
+                    </button>
+                </div>
+
+                <div class="shop-card-info">
+                    <span class="product-category">AUDIO</span>
+                    <h3>Studio Pro Headphones</h3>
+
+                    <div class="product-rating">
+                        <span>★★★★★</span>
+                        <small>4.9 (128 reviews)</small>
+                    </div>
+
+                    <div class="product-price">
+                        <strong>$249.00</strong>
+                        <del>$299.00</del>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 2 -->
+            <article class="shop-card" data-category="mobile" data-price="999" data-reveal>
+                <div class="shop-card-image image-blue">
+                    <span class="product-badge badge-new">NEW ARRIVAL</span>
+
+                    <button class="wishlist-btn" aria-label="Add smartphone to wishlist">
+                        <i class="bi bi-heart"></i>
+                    </button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=800&q=85"
+                        alt="Modern smartphone"
+                        loading="lazy"
+                    >
+
+                    <button class="quick-add">
+                        <i class="bi bi-plus-lg"></i>
+                        Quick Add
+                    </button>
+                </div>
+
+                <div class="shop-card-info">
+                    <span class="product-category">SMARTPHONES</span>
+                    <h3>Nova X Smartphone</h3>
+
+                    <div class="product-rating">
+                        <span>★★★★★</span>
+                        <small>4.8 (96 reviews)</small>
+                    </div>
+
+                    <div class="product-price">
+                        <strong>$999.00</strong>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 3 -->
+            <article class="shop-card" data-category="computers" data-price="1499" data-reveal>
+                <div class="shop-card-image image-pink">
+                    <span class="product-badge badge-limited">LIMITED</span>
+
+                    <button class="wishlist-btn" aria-label="Add laptop to wishlist">
+                        <i class="bi bi-heart"></i>
+                    </button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=85"
+                        alt="Modern laptop"
+                        loading="lazy"
+                    >
+
+                    <button class="quick-add">
+                        <i class="bi bi-plus-lg"></i>
+                        Quick Add
+                    </button>
+                </div>
+
+                <div class="shop-card-info">
+                    <span class="product-category">COMPUTERS</span>
+                    <h3>AirBook Ultra</h3>
+
+                    <div class="product-rating">
+                        <span>★★★★★</span>
+                        <small>4.9 (84 reviews)</small>
+                    </div>
+
+                    <div class="product-price">
+                        <strong>$1,499.00</strong>
+                        <del>$1,699.00</del>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 4 -->
+            <article class="shop-card" data-category="wearables" data-price="399" data-reveal>
+                <div class="shop-card-image image-green">
+                    <button class="wishlist-btn" aria-label="Add smartwatch to wishlist">
+                        <i class="bi bi-heart"></i>
+                    </button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=85"
+                        alt="Minimal smartwatch"
+                        loading="lazy"
+                    >
+
+                    <button class="quick-add">
+                        <i class="bi bi-plus-lg"></i>
+                        Quick Add
+                    </button>
+                </div>
+
+                <div class="shop-card-info">
+                    <span class="product-category">WEARABLES</span>
+                    <h3>Pulse Smartwatch</h3>
+
+                    <div class="product-rating">
+                        <span>★★★★★</span>
+                        <small>4.7 (72 reviews)</small>
+                    </div>
+
+                    <div class="product-price">
+                        <strong>$399.00</strong>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 5 -->
+            <article class="shop-card" data-category="audio" data-price="179" data-reveal>
+                <div class="shop-card-image image-orange">
+                    <span class="product-badge">POPULAR</span>
+
+                    <button class="wishlist-btn" aria-label="Add speaker to wishlist">
+                        <i class="bi bi-heart"></i>
+                    </button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=85"
+                        alt="Premium wireless speaker"
+                        loading="lazy"
+                    >
+
+                    <button class="quick-add">
+                        <i class="bi bi-plus-lg"></i>
+                        Quick Add
+                    </button>
+                </div>
+
+                <div class="shop-card-info">
+                    <span class="product-category">AUDIO</span>
+                    <h3>SoundWave Speaker</h3>
+
+                    <div class="product-rating">
+                        <span>★★★★★</span>
+                        <small>4.8 (65 reviews)</small>
+                    </div>
+
+                    <div class="product-price">
+                        <strong>$179.00</strong>
+                        <del>$219.00</del>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 6 -->
+            <article class="shop-card" data-category="mobile" data-price="799" data-reveal>
+                <div class="shop-card-image image-cyan">
+                    <button class="wishlist-btn" aria-label="Add phone to wishlist">
+                        <i class="bi bi-heart"></i>
+                    </button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=85"
+                        alt="Smartphone product"
+                        loading="lazy"
+                    >
+
+                    <button class="quick-add">
+                        <i class="bi bi-plus-lg"></i>
+                        Quick Add
+                    </button>
+                </div>
+
+                <div class="shop-card-info">
+                    <span class="product-category">SMARTPHONES</span>
+                    <h3>Nova X Lite</h3>
+
+                    <div class="product-rating">
+                        <span>★★★★☆</span>
+                        <small>4.6 (54 reviews)</small>
+                    </div>
+
+                    <div class="product-price">
+                        <strong>$799.00</strong>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 7 -->
+            <article class="shop-card" data-category="computers" data-price="1299" data-reveal>
+                <div class="shop-card-image image-yellow">
+                    <button class="wishlist-btn" aria-label="Add tablet to wishlist">
+                        <i class="bi bi-heart"></i>
+                    </button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=85"
+                        alt="Modern tablet"
+                        loading="lazy"
+                    >
+
+                    <button class="quick-add">
+                        <i class="bi bi-plus-lg"></i>
+                        Quick Add
+                    </button>
+                </div>
+
+                <div class="shop-card-info">
+                    <span class="product-category">COMPUTERS</span>
+                    <h3>Vision Pro Tablet</h3>
+
+                    <div class="product-rating">
+                        <span>★★★★★</span>
+                        <small>4.8 (91 reviews)</small>
+                    </div>
+
+                    <div class="product-price">
+                        <strong>$1,299.00</strong>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 8 -->
+            <article class="shop-card" data-category="wearables" data-price="149" data-reveal>
+                <div class="shop-card-image image-lavender">
+                    <span class="product-badge badge-new">JUST DROPPED</span>
+
+                    <button class="wishlist-btn" aria-label="Add earbuds to wishlist">
+                        <i class="bi bi-heart"></i>
+                    </button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=800&q=85"
+                        alt="Wireless earbuds"
+                        loading="lazy"
+                    >
+
+                    <button class="quick-add">
+                        <i class="bi bi-plus-lg"></i>
+                        Quick Add
+                    </button>
+                </div>
+
+                <div class="shop-card-info">
+                    <span class="product-category">WEARABLES</span>
+                    <h3>AirBeat Earbuds</h3>
+
+                    <div class="product-rating">
+                        <span>★★★★★</span>
+                        <small>4.9 (112 reviews)</small>
+                    </div>
+
+                    <div class="product-price">
+                        <strong>$149.00</strong>
+                        <del>$179.00</del>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- Load More -->
+        <div class="shop-footer" data-reveal>
+            <button class="shop-load-more" id="loadMoreProducts">
+                Discover More
+                <i class="bi bi-arrow-down-right"></i>
+            </button>
+
+            <p>More great finds are waiting for you.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+
 <!-- Bootstrap 5 JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
