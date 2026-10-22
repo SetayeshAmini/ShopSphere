@@ -945,3 +945,103 @@ document.addEventListener("DOMContentLoaded", () => {
     updateProducts();
 });
 
+
+/* =========================
+   OUR STORY INTERACTIONS
+========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+    const storySection = document.querySelector(".story-section");
+
+    if (!storySection) return;
+
+    const counters = storySection.querySelectorAll("[data-count]");
+    const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    // ANIMATED COUNTERS
+    function animateCounter(counter) {
+        if (counter.dataset.animated === "true") return;
+
+        counter.dataset.animated = "true";
+
+        const target = Number(counter.dataset.count);
+
+        if (!Number.isFinite(target)) return;
+
+        if (prefersReducedMotion) {
+            counter.textContent = target.toLocaleString("en-US");
+            return;
+        }
+
+        const duration = 1800;
+        const startTime = performance.now();
+
+        function updateCounter(currentTime) {
+            const progress = Math.min(
+                (currentTime - startTime) / duration,
+                1
+            );
+
+            // Smooth ease-out
+            const easedProgress = 1 - Math.pow(1 - progress, 4);
+            const currentValue = Math.floor(target * easedProgress);
+
+            counter.textContent = currentValue.toLocaleString("en-US");
+
+            if (progress < 1) {
+                requestAnimationFrame(updateCounter);
+            } else {
+                counter.textContent = target.toLocaleString("en-US");
+            }
+        }
+
+        requestAnimationFrame(updateCounter);
+    }
+
+    const stats = storySection.querySelector(".story-stats");
+
+    if (stats && "IntersectionObserver" in window) {
+        const statsObserver = new IntersectionObserver(
+            entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        counters.forEach(animateCounter);
+                        statsObserver.disconnect();
+                    }
+                });
+            },
+            { threshold: 0.3 }
+        );
+
+        statsObserver.observe(stats);
+    } else {
+        counters.forEach(animateCounter);
+    }
+
+    // SUBTLE POINTER EFFECT ON THE STORY IMAGE
+    const visual = storySection.querySelector(".story-image-main");
+
+    if (visual && !prefersReducedMotion) {
+        visual.addEventListener("pointermove", event => {
+            if (event.pointerType === "touch") return;
+
+            const rect = visual.getBoundingClientRect();
+
+            const x = (event.clientX - rect.left) / rect.width;
+            const y = (event.clientY - rect.top) / rect.height;
+
+            const rotateY = (x - 0.5) * 4;
+            const rotateX = (0.5 - y) * 4;
+
+            visual.style.transform =
+                `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        visual.addEventListener("pointerleave", () => {
+            visual.style.transform = "";
+        });
+    }
+});
+
