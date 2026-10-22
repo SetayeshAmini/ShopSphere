@@ -43,7 +43,6 @@ The goal is to create a shopping experience that feels modern, intuitive, and en
 | JavaScript | Interactive components and dynamic behaviors |
 | Bootstrap 5 | Responsive layout and UI utilities |
 | Bootstrap Icons | Icons throughout the interface |
-| Animate On Scroll (AOS) | Scroll-triggered animations |
 | Git & GitHub | Version control and project hosting |
 | GitHub Pages | Deployment and live website hosting |
 
